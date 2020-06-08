@@ -17,28 +17,29 @@
 
 #include <cstdio>
 #include <iostream>
-#include <vector>
-#define MAX 100001
+#define MAX 987987987
 using namespace std;
 int n,m;
-int arr[MAX];
-long long total;
+int arr[100001];
 int result = MAX;
+
 int main(){
     cin>>n>>m;
-    for(int i=0; i<n; i++) cin>>arr[i];
-    int start=0,end=0;
-    total += arr[start];
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+    int start = 0; int end = 0;
+    int sum = arr[start];
 
     while(start !=n && end != n){
-        if(total<m){
-            total += arr[++end];
-        }else{
+        if(sum<m) sum += arr[++end];
+        else{
             int len = end-start+1;
-            if(result>len) result = len;
-            total -= arr[start++];
+            result = result>len ? len : result;
+            sum -= arr[start++];
         }
     }
+
     result == MAX ? cout<<0 : cout<<result;
     return 0;
 }
